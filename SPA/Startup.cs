@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace SPA
 {
     public class Startup
@@ -22,6 +21,7 @@ namespace SPA
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<Domain.Contracts.IUnitOfWork>((d) => new DataStore.Infrastructure.UnitOfWorkImplementation());
             services.AddMvc();
         }
 
